@@ -13,7 +13,8 @@ import { ArticulosFamiliasService } from './services/articulos-familias.service'
 
 import { RouterModule } from '@angular/router';
 import {APP_BASE_HREF} from '@angular/common';
-import { MenuComponent } from './components/menu/menu.component';  
+import { MenuComponent } from './components/menu/menu.component';
+import { ArticulosComponent } from './components/articulos/articulos.component';  
 
 
 @NgModule({
@@ -21,10 +22,11 @@ import { MenuComponent } from './components/menu/menu.component';
     RouterModule.forRoot([
       { path: 'inicio', component: InicioComponent },
       { path: 'articulosfamilias', component: ArticulosFamiliasComponent },
+      { path: 'articulos', component: ArticulosComponent },
       { path: '', redirectTo: '/inicio', pathMatch: 'full' }
       ]),
       ],
-  declarations: [ AppComponent, HelloComponent, InicioComponent, ArticulosFamiliasComponent, MenuComponent ],
+  declarations: [ AppComponent, HelloComponent, InicioComponent, ArticulosFamiliasComponent, MenuComponent, ArticulosComponent ],
   bootstrap:    [ AppComponent ],
   providers: [MockArticulosFamiliasService, ArticulosFamiliasService,  { provide: APP_BASE_HREF, useValue: "/" }]
 })
