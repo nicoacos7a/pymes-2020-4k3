@@ -12,7 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ArticulosFamiliasService } from './services/articulos-familias.service';
 
 import { RouterModule } from '@angular/router';
-import {APP_BASE_HREF} from '@angular/common';  
+import {APP_BASE_HREF} from '@angular/common';
+import { MenuComponent } from './components/menu/menu.component';  
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import {APP_BASE_HREF} from '@angular/common';
       { path: '', redirectTo: '/inicio', pathMatch: 'full' }
       ]),
       ],
-  declarations: [ AppComponent, HelloComponent, InicioComponent, ArticulosFamiliasComponent ],
+  declarations: [ AppComponent, HelloComponent, InicioComponent, ArticulosFamiliasComponent, MenuComponent ],
   bootstrap:    [ AppComponent ],
   providers: [MockArticulosFamiliasService, ArticulosFamiliasService,  { provide: APP_BASE_HREF, useValue: "/" }]
 })
