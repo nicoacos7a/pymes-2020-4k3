@@ -11,6 +11,10 @@ import { MockArticulosFamiliasService } from './services/mock-articulos-familias
 import { HttpClientModule } from '@angular/common/http';
 import { ArticulosFamiliasService } from './services/articulos-familias.service';
 
+import { RouterModule } from '@angular/router';
+import {APP_BASE_HREF} from '@angular/common';  
+
+
 @NgModule({
   imports:      [ BrowserModule, FormsModule, HttpClientModule],
   declarations: [ AppComponent, HelloComponent, InicioComponent, ArticulosFamiliasComponent ],
