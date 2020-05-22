@@ -14,7 +14,8 @@ import { ArticulosFamiliasService } from './services/articulos-familias.service'
 import { RouterModule } from '@angular/router';
 import {APP_BASE_HREF} from '@angular/common';
 import { MenuComponent } from './components/menu/menu.component';
-import { ArticulosComponent } from './components/articulos/articulos.component';  
+import { ArticulosComponent } from './components/articulos/articulos.component';
+import { MockArticulosService } from './services/mock-articulos.service';  
 
 
 @NgModule({
@@ -28,6 +29,6 @@ import { ArticulosComponent } from './components/articulos/articulos.component';
       ],
   declarations: [ AppComponent, HelloComponent, InicioComponent, ArticulosFamiliasComponent, MenuComponent, ArticulosComponent ],
   bootstrap:    [ AppComponent ],
-  providers: [MockArticulosFamiliasService, ArticulosFamiliasService,  { provide: APP_BASE_HREF, useValue: "/" }]
+  providers: [MockArticulosFamiliasService, ArticulosFamiliasService,  { provide: APP_BASE_HREF, useValue: "/", providers: [MockArticulosService] }]
 })
 export class AppModule { }
