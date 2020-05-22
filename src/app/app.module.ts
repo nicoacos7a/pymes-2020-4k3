@@ -8,10 +8,13 @@ import { InicioComponent } from './components/inicio/inicio.component';
 import { ArticulosFamiliasComponent } from './components/articulos-familias/articulos-familias.component';
 import { MockArticulosFamiliasService } from './services/mock-articulos-familias.service';
 
+import { HttpClientModule } from '@angular/common/http';
+import { ArticulosFamiliasService } from './services/articulos-familias.service';
+
 @NgModule({
-  imports:      [ BrowserModule, FormsModule ],
+  imports:      [ BrowserModule, FormsModule, HttpClientModule],
   declarations: [ AppComponent, HelloComponent, InicioComponent, ArticulosFamiliasComponent ],
   bootstrap:    [ AppComponent ],
-  providers: [MockArticulosFamiliasService]
+  providers: [MockArticulosFamiliasService, ArticulosFamiliasService]
 })
 export class AppModule { }
