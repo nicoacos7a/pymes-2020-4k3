@@ -16,7 +16,13 @@ import {APP_BASE_HREF} from '@angular/common';
 
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule, HttpClientModule],
+  imports:      [ BrowserModule, FormsModule, HttpClientModule,
+    RouterModule.forRoot([
+      { path: 'inicio', component: InicioComponent },
+      { path: 'articulosfamilias', component: ArticulosFamiliasComponent },
+      { path: '', redirectTo: '/inicio', pathMatch: 'full' }
+      ]),
+      ],
   declarations: [ AppComponent, HelloComponent, InicioComponent, ArticulosFamiliasComponent ],
   bootstrap:    [ AppComponent ],
   providers: [MockArticulosFamiliasService, ArticulosFamiliasService]

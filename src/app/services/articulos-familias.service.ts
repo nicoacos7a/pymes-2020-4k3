@@ -14,7 +14,7 @@ export class ArticulosFamiliasService {
   resourceUrl: string;
   constructor(private httpClient: HttpClient) {
     this.resourceUrl =
-      'http://labsys.frc.utn.edu.ar:8080/api/ArticulosFamilias/';
+      'https://labsys.frc.utn.edu.ar:8080/api/ArticulosFamilias/';
   }
 
   get() {
