@@ -25,6 +25,6 @@ import {APP_BASE_HREF} from '@angular/common';
       ],
   declarations: [ AppComponent, HelloComponent, InicioComponent, ArticulosFamiliasComponent ],
   bootstrap:    [ AppComponent ],
-  providers: [MockArticulosFamiliasService, ArticulosFamiliasService]
+  providers: [MockArticulosFamiliasService, ArticulosFamiliasService,  { provide: APP_BASE_HREF, useValue: "/" }]
 })
 export class AppModule { }
