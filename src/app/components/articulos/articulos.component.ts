@@ -3,6 +3,7 @@ import { Articulo} from "../../models/articulo";
 import { ArticuloFamilia } from "../../models/articulo-familia";
 import { MockArticulosService } from "../../services/mock-articulos.service";
 import { MockArticulosFamiliasService } from "../../services/mock-articulos-familias.service";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: "app-articulos",
@@ -41,9 +42,28 @@ export class ArticulosComponent implements OnInit {
   constructor(
     private articulosService: MockArticulosService,
     private articulosFamiliasService: MockArticulosFamiliasService,
+    public formBuilder: FormBuilder
   ) {}
 
+  FormFiltro: FormGroup;
+  FormReg: FormGroup;
+
   ngOnInit() {
+    this.FormFiltro = this.formBuilder.group({
+      Nombre: [null],
+      Activo: [null],
+    });
+    this.FormReg = this.formBuilder.group({
+      IdArticulo: [null],
+      Nombre: [null],
+      Precio: [null],
+      Stock: [null],
+      CodigoDeBarra: [null],
+      IdArticuloFamilia: [null],
+      FechaAlta: [null],
+      Activo: [false],
+    });
+
     this.GetFamiliasArticulos();
   }
 
