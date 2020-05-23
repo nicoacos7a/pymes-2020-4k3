@@ -1,31 +1,31 @@
-import { Component, OnInit } from "@angular/core";
-import { Articulo} from "../../models/articulo";
-import { ArticuloFamilia } from "../../models/articulo-familia";
-import { MockArticulosService } from "../../services/mock-articulos.service";
-import { MockArticulosFamiliasService } from "../../services/mock-articulos-familias.service";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { Articulo } from '../../models/articulo';
+import { ArticuloFamilia } from '../../models/articulo-familia';
+import { MockArticulosService } from '../../services/mock-articulos.service';
+import { MockArticulosFamiliasService } from '../../services/mock-articulos-familias.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: "app-articulos",
-  templateUrl: "./articulos.component.html",
-  styleUrls: ["./articulos.component.css"]
+  selector: 'app-articulos',
+  templateUrl: './articulos.component.html',
+  styleUrls: ['./articulos.component.css'],
 })
 export class ArticulosComponent implements OnInit {
-  Titulo = "Articulos";
+  Titulo = 'Articulos';
   TituloAccionABMC = {
-    A: "(Agregar)",
-    B: "(Eliminar)",
-    M: "(Modificar)",
-    C: "(Consultar)",
-    L: "(Listado)"
+    A: '(Agregar)',
+    B: '(Eliminar)',
+    M: '(Modificar)',
+    C: '(Consultar)',
+    L: '(Listado)',
   };
-  AccionABMC = "L"; // inicialmente inicia en el listado de articulos (buscar con parametros)
+  AccionABMC = 'L'; // inicialmente inicia en el listado de articulos (buscar con parametros)
   Mensajes = {
-    SD: " No se encontraron registros...",
-    RD: " Revisar los datos ingresados..."
+    SD: ' No se encontraron registros...',
+    RD: ' Revisar los datos ingresados...',
   };
 
- Lista: Articulo[] = [];
+  Lista: Articulo[] = [];
   RegistrosTotal: number;
   Familias: ArticuloFamilia[] = [];
   SinBusquedasRealizadas = true;
@@ -33,11 +33,10 @@ export class ArticulosComponent implements OnInit {
 
   // opciones del combo activo
   OpcionesActivo = [
-    { Id: null, Nombre: "" },
-    { Id: true, Nombre: "SI" },
-    { Id: false, Nombre: "NO" }
+    { Id: null, Nombre: '' },
+    { Id: true, Nombre: 'SI' },
+    { Id: false, Nombre: 'NO' },
   ];
-
 
   constructor(
     private articulosService: MockArticulosService,
@@ -68,24 +67,29 @@ export class ArticulosComponent implements OnInit {
   }
 
   GetFamiliasArticulos() {
-         this.articulosFamiliasService.get().subscribe((res: ArticuloFamilia[]) => {
-       this.Familias = res;
-     });
+    this.articulosFamiliasService.get().subscribe((res: ArticuloFamilia[]) => {
+      this.Familias = res;
+    });
   }
 
   Agregar() {
-    this.AccionABMC = "A";
+    this.AccionABMC = 'A';
+    this.FormReg.reset({ Activo: true });
   }
 
   // Buscar segun los filtros, establecidos en FormReg
   Buscar() {
-     this.articulosService
-      .get('', null, this.Pagina)
+    this.articulosService
+      .get(
+        this.FormFiltro.value.Nombre,
+        this.FormFiltro.value.Activo,
+        this.Pagina
+      )
       .subscribe((res: any) => {
         this.Lista = res.Lista;
         this.RegistrosTotal = res.RegistrosTotal;
       });
-     this.SinBusquedasRealizadas = false;
+    this.SinBusquedasRealizadas = false;
   }
 
   // Obtengo un registro especifico según el Id
@@ -95,40 +99,41 @@ export class ArticulosComponent implements OnInit {
   }
 
   Consultar(Dto) {
-    this.BuscarPorId(Dto, "C");
+    this.BuscarPorId(Dto, 'C');
   }
 
   // comienza la modificacion, luego la confirma con el metodo Grabar
   Modificar(Dto) {
     if (!Dto.Activo) {
-      alert("No puede modificarse un registro Inactivo.");
+      alert('No puede modificarse un registro Inactivo.');
       return;
     }
-    this.BuscarPorId(Dto, "M");
+    this.BuscarPorId(Dto, 'M');
   }
 
   // grabar tanto altas como modificaciones
   Grabar() {
-    alert("Registro Grabado!");
+    alert('Registro Grabado!');
     this.Volver();
   }
 
   ActivarDesactivar(Dto) {
     var resp = confirm(
-      "Esta seguro de " +
-        (Dto.Activo ? "desactivar" : "activar") +
-        " este registro?");
-    if (resp === true)
-      alert("registro activado/desactivado!");
+      'Esta seguro de ' +
+        (Dto.Activo ? 'desactivar' : 'activar') +
+        ' este registro?'
+    );
+    if (resp === true) {
+      alert('registro activado/desactivado!');
+    }
   }
 
   // Volver desde Agregar/Modificar
   Volver() {
-    this.AccionABMC = "L";
+    this.AccionABMC = 'L';
   }
 
   ImprimirListado() {
     alert('Sin desarrollar...');
   }
-
 }
