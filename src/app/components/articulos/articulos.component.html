@@ -16,7 +16,8 @@
     </label>
         <div class="col-sm-3">
             <select class="form-control" name="Activo" formControlName="Activo">
-        <option *ngFor="let opt of OpcionesActivo" [ngValue]="opt.Id"> {{ opt.Nombre }} </option
+        <option *ngFor="let opt of OpcionesActivo" [ngValue]="opt.Id">
+          {{ opt.Nombre }} </option
         ><option> </option
       ></select>
         </div>
@@ -72,6 +73,7 @@
             </tr>
         </tbody>
     </table>
+
     <!-- Paginador-->
     <div id="divPaginador" class="col-sm-12">
         <div class="row bg-light">
@@ -151,7 +153,10 @@
       </label>
             <div class="col-sm-6">
                 <select name="IdArticuloFamilia" class="form-control" formControlName="IdArticuloFamilia">
-          <option *ngFor="let opt of Familias" [ngValue]="opt.IdArticuloFamilia">
+          <option
+            *ngFor="let opt of Familias"
+            [ngValue]="opt.IdArticuloFamilia"
+          >
             {{ opt.Nombre }} </option
           ><option> </option
         ></select>
@@ -179,11 +184,7 @@
           class="form-control"
           formControlName="Activo"
         >
-          <option
-            *ngFor="let opt of OpcionesActivo"
-            [ngValue]="opt.Id"
-          >
-            {{ opt.Nombre }} </option
+          <option *ngFor="let opt of OpcionesActivo"> {{ opt.Nombre }} </option
           ><option> </option
         ></select>
       </div>
