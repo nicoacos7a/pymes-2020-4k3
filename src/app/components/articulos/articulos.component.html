@@ -151,7 +151,7 @@
       </label>
             <div class="col-sm-6">
                 <select name="IdArticuloFamilia" class="form-control" formControlName="IdArticuloFamilia">
-          <option *ngFor="let opt of Familias" [ngValue]="opt.Id">
+          <option *ngFor="let opt of Familias" [ngValue]="opt.IdArticuloFamilia">
             {{ opt.Nombre }} </option
           ><option> </option
         ></select>
@@ -181,7 +181,7 @@
         >
           <option
             *ngFor="let opt of OpcionesActivo"
-            [ngValue]="opt.Activo"
+            [ngValue]="opt.Id"
           >
             {{ opt.Nombre }} </option
           ><option> </option
