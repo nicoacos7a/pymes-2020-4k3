@@ -18,6 +18,7 @@ import { ArticulosComponent } from './components/articulos/articulos.component';
 import { MockArticulosService } from './services/mock-articulos.service';
 
 import { ReactiveFormsModule } from "@angular/forms";
+import { ArticulosService } from './services/articulos.service';
 
 
 @NgModule({
@@ -51,7 +52,7 @@ import { ReactiveFormsModule } from "@angular/forms";
   [
     MockArticulosFamiliasService, 
     ArticulosFamiliasService,  
-    { provide: APP_BASE_HREF, useValue: "/", providers: [MockArticulosService] }
+    { provide: APP_BASE_HREF, useValue: "/", providers: [MockArticulosService], providers: [ArticulosService] }
   ]
 })
 export class AppModule { }

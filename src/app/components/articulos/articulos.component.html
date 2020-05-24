@@ -48,6 +48,7 @@
                 <th class="text-center">Fecha de Alta</th>
                 <th class="text-center">Activo</th>
                 <th class="text-center text-nowrap">Acciones</th>
+                <th class="text-center">Familia</th>
             </tr>
         </thead>
         <tbody>
@@ -70,6 +71,7 @@
             <span class="fas fa-{{ dto.Activo ? 'times' : 'check' }}"></span>
           </button>
                 </td>
+                <td>{{GetArticuloFamiliaNombre(dto.IdArticuloFamilia)}}</td>
             </tr>
         </tbody>
     </table>
