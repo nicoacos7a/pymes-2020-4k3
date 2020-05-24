@@ -113,18 +113,52 @@ export class ArticulosComponent implements OnInit {
 
   // grabar tanto altas como modificaciones
   Grabar() {
-    alert('Registro Grabado!');
-    this.Volver();
+ 
+    //hacemos una copia de los datos del formulario, para modificar la fecha y luego enviarlo al servidor
+    const itemCopy = { ...this.FormReg.value };
+ 
+    //convertir fecha de string dd/MM/yyyy a ISO para que la entienda webapi
+    var arrFecha = itemCopy.FechaAlta.substr(0, 10).split("/");
+    if (arrFecha.length == 3)
+      itemCopy.FechaAlta = 
+          new Date(
+            arrFecha[2],
+            arrFecha[1] - 1,
+            arrFecha[0]
+          ).toISOString();
+ 
+    // agregar post
+    if (itemCopy.IdArticulo == 0 || itemCopy.IdArticulo == null) {
+      this.articulosService.post(itemCopy).subscribe((res: any) => {
+        this.Volver();
+        alert('Registro agregado correctamente.');
+        this.Buscar();
+      });
+    } else {
+      // modificar put
+      this.articulosService
+        .put(itemCopy.IdArticulo, itemCopy)
+        .subscribe((res: any) => {
+          this.Volver();
+          alert('Registro modificado correctamente.');
+          this.Buscar();
+        });
+    }
   }
 
+  // representa la baja logica 
   ActivarDesactivar(Dto) {
     var resp = confirm(
-      'Esta seguro de ' +
-        (Dto.Activo ? 'desactivar' : 'activar') +
-        ' este registro?'
-    );
-    if (resp === true) {
-      alert('registro activado/desactivado!');
+      "Esta seguro de " +
+        (Dto.Activo ? "desactivar" : "activar") +
+        " este registro?");
+    if (resp === true)
+    {
+     this.articulosService  
+          .delete(Dto.IdArticulo)
+          .subscribe((res: any) => 
+            this.Buscar()
+          );
     }
   }
 
@@ -135,5 +169,10 @@ export class ArticulosComponent implements OnInit {
 
   ImprimirListado() {
     alert('Sin desarrollar...');
+  }
+
+  GetArticuloFamiliaNombre(Id){
+    var Nombre = this.Familias.filter(x => x.IdArticuloFamilia === Id)[0].Nombre;
+    return Nombre;
   }
 }

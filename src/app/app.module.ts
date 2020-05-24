@@ -21,7 +21,11 @@ import { ReactiveFormsModule } from "@angular/forms";
 
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule, HttpClientModule,
+  imports:
+  [ 
+    BrowserModule, 
+    FormsModule, 
+    HttpClientModule,
     RouterModule.forRoot([
       { path: 'inicio', component: InicioComponent },
       { path: 'articulosfamilias', component: ArticulosFamiliasComponent },
@@ -29,9 +33,25 @@ import { ReactiveFormsModule } from "@angular/forms";
       { path: '', redirectTo: '/inicio', pathMatch: 'full' }
       ]),
       ReactiveFormsModule,
-      ],
-  declarations: [ AppComponent, HelloComponent, InicioComponent, ArticulosFamiliasComponent, MenuComponent, ArticulosComponent ],
-  bootstrap:    [ AppComponent ],
-  providers: [MockArticulosFamiliasService, ArticulosFamiliasService,  { provide: APP_BASE_HREF, useValue: "/", providers: [MockArticulosService] }]
+    ],
+  declarations: 
+  [ 
+    AppComponent, 
+    HelloComponent, 
+    InicioComponent, 
+    ArticulosFamiliasComponent, 
+    MenuComponent, 
+    ArticulosComponent 
+  ],
+  bootstrap:
+  [
+    AppComponent
+  ],
+  providers:
+  [
+    MockArticulosFamiliasService, 
+    ArticulosFamiliasService,  
+    { provide: APP_BASE_HREF, useValue: "/", providers: [MockArticulosService] }
+  ]
 })
 export class AppModule { }
